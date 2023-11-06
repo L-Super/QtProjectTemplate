@@ -3,5 +3,10 @@ project(QtProjectTemplate)
 
 set(CMAKE_CXX_STANDARD 17)
 
+option(BUILD_TEST "Build the demo" OFF)
+
 add_subdirectory(src)
-add_subdirectory(tests)
+
+if (BUILD_TEST)
+    add_subdirectory(tests)
+endif ()
