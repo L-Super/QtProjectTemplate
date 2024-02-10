@@ -4,7 +4,7 @@ project(QtProjectTemplate)
 
 set(CMAKE_CXX_STANDARD 17)
 
-option(BUILD_TEST "Build the demo" OFF)
+option(BUILD_TEST "Build the test" OFF)
 
 # Set application version. For more details, see src/version.h.in
 set(VERSION_MAJOR 1)
