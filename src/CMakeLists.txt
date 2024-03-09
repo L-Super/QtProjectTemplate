@@ -16,6 +16,11 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS
         Widgets
         REQUIRED)
 
+if (MSVC)
+    # set MSVC utf-8 build
+    add_compile_options(/utf-8)
+endif ()
+
 add_executable(QtProjectTemplate main.cpp)
 
 target_link_libraries(QtProjectTemplate
