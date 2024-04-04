@@ -16,7 +16,9 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(QtProjectTemplate main.cpp)
+qt_add_resources(RESOURCES resources.qrc)
+
+add_executable(QtProjectTemplate main.cpp ${RESOURCES})
 
 target_link_libraries(QtProjectTemplate
         Qt${QT_VERSION_MAJOR}::Core
