@@ -21,9 +21,9 @@ if (MSVC)
     add_compile_options(/utf-8)
 endif ()
 
-qt_add_resources(RESOURCES resources.qrc)
+qt_add_resources(QRC_FILES resources.qrc)
 
-add_executable(QtProjectTemplate main.cpp ${RESOURCES})
+add_executable(QtProjectTemplate main.cpp ${QRC_FILES})
 
 target_link_libraries(QtProjectTemplate
         Qt${QT_VERSION_MAJOR}::Core
