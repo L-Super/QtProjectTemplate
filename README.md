@@ -10,3 +10,12 @@ This project template provides a Qt project setup with a CI/CD.
 - src: Project source code
 - tests(optional): Unit tests
 - scripts(optional): some tool scripts
+
+## TODO
+- [ ] add translation function
+
+- [ ] add icon on all platforms
+
+- [ ] add `.rc` file on Windows
+
+- [ ] auto making installer package

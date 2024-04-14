@@ -23,7 +23,11 @@ endif ()
 
 qt_add_resources(QRC_FILES resources.qrc)
 
-add_executable(QtProjectTemplate main.cpp ${QRC_FILES})
+set(SRC_FILES MainWindow.cpp MainWindow.h MainWindow.ui)
+
+add_executable(QtProjectTemplate main.cpp ${QRC_FILES}
+        ${SRC_FILES}
+)
 
 target_link_libraries(QtProjectTemplate
         Qt${QT_VERSION_MAJOR}::Core
