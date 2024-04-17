@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QDebug>
+#include <QIcon>
 
 #include "version.h"
 #include "MainWindow.h"
