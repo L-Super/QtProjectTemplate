@@ -7,6 +7,7 @@
 int main(int argc, char* argv[])
 {
 	QApplication a(argc, argv);
+    a.setWindowIcon(QIcon(":/resources/logo.svg"));
 
 	qDebug()<<QString("The version of this application is v%1").arg(VERSION_STR);
     MainWindow w;

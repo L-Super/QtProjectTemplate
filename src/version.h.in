@@ -3,4 +3,17 @@
 #define VERSION_PATCH @VERSION_PATCH@
 #define VERSION @VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@
 #define VERSION_STR "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@"
-#define VERSION_WIN @VERSION_MAJOR@,@VERSION_MINOR@,@VERSION_PATCH@
+#define VERSION_WIN @VERSION_MAJOR@,@VERSION_MINOR@,@VERSION_PATCH@,0
+#define VERSION_WIN_STR "@VERSION_MAJOR@,@VERSION_MINOR@,@VERSION_PATCH@,0"
+
+#define PRODUCT_ICON           "logo.ico" // 图标
+#define FILE_VERSION           VERSION_WIN   // 文件版本
+#define FILE_VERSION_STR       VERSION_STR
+#define PRODUCT_VERSION        VERSION_WIN   // 产品版本
+#define PRODUCT_VERSION_STR    VERSION_WIN_STR
+#define COMPANY_NAME           "Qt"
+#define INTERNAL_NAME          "MyApp.exe"
+#define FILE_DESCRIPTION       "Qt template application"  // 文件说明
+#define LEGAL_COPYRIGHT        "Copyright 2024-2077 The L Company Ltd." // 版权
+#define PRODUCT_NAME           "Qt template"        // 产品名称
+#define ORGANIZATION_DOMAIN    "https://www.qt.io/"  // 域名

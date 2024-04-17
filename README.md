@@ -14,8 +14,4 @@ This project template provides a Qt project setup with a CI/CD.
 ## TODO
 - [ ] add translation function
 
-- [ ] add icon on all platforms
-
-- [ ] add `.rc` file on Windows
-
 - [ ] auto making installer package
