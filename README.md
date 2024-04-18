@@ -12,6 +12,9 @@ This project template provides a Qt project setup with a CI/CD.
 - scripts(optional): some tool scripts
 
 ## TODO
+
+- [ ] add macOS plist and icon
+
 - [ ] add translation function
 
 - [ ] auto making installer package
