@@ -28,7 +28,7 @@ set(SRC_FILES MainWindow.cpp MainWindow.h MainWindow.ui)
 
 if (WIN32)
     if (MSVC)
-        # set MSVC utf-8 build
+        # Set MSVC to use utf-8 encode for building
         add_compile_options(/utf-8)
     endif ()
 
@@ -42,9 +42,13 @@ if (WIN32)
         # Remove the terminal display
         set(CONSOLE WIN32)
     endif ()
+elseif (APPLE)
+    set(MAC_RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources/mac")
+    # It needs to be added to add_executable to display the bundle icon on macOS
+    set(SRC_FILES ${SRC_FILES} ${MAC_RES_PATH}/logo.icns)
 endif ()
 
-add_executable(QtProjectTemplate
+add_executable(${PROJECT_NAME}
         ${CONSOLE}
         main.cpp
         ${QRC_FILES}
@@ -52,10 +56,24 @@ add_executable(QtProjectTemplate
 )
 
 if (APPLE)
-    set_target_properties(QtProjectTemplate PROPERTIES MACOSX_BUNDLE TRUE)
+    # It needs after add_executable
+    set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE TRUE)
+
+    # Add icon to Mac bundle Resources dir
+    set_source_files_properties(${APP_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+            MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
+            MACOSX_BUNDLE_ICON_FILE "logo.icns"
+            MACOSX_BUNDLE_GUI_IDENTIFIER "com.template.example"
+            MACOSX_BUNDLE_INFO_STRING "This is a qt application"
+            MACOSX_BUNDLE_BUNDLE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
+            MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
+            MACOSX_BUNDLE_COPYRIGHT "Copyright 2024-2077 The L Company Ltd."
+            MACOSX_BUNDLE_INFO_PLIST ${MAC_RES_PATH}/Info.plist.in)
 endif ()
 
-target_link_libraries(QtProjectTemplate
+target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Gui
         Qt${QT_VERSION_MAJOR}::Widgets
@@ -70,14 +88,10 @@ if (WIN32)
             "$<TARGET_FILE:${PROJECT_NAME}>"
     )
 elseif (APPLE)
-    # TODO:
-    # configure_file(${CMAKE_SOURCE_DIR}/Info.plist.in ${CMAKE_BINARY_DIR}/Info.plist)
-    # set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_BINARY_DIR}/Info.plist)
-
     add_custom_command(TARGET ${PROJECT_NAME}
             POST_BUILD
             COMMAND ${QT_DEPLOY_EXECUTABLE}
-            $<TARGET_BUNDLE_DIR:${PROJECT_NAME}>
+            "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>"
             # -dmg
     )
 endif ()

@@ -13,7 +13,7 @@ This project template provides a Qt project setup with a CI/CD.
 
 ## TODO
 
-- [ ] add macOS plist and icon
+- [ ] adjust rc file location
 
 - [ ] add translation function
 
