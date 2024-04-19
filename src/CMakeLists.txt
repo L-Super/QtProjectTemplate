@@ -67,7 +67,7 @@ if (WIN32)
             # Deploy the Qt Application
             COMMAND ${QT_DEPLOY_EXECUTABLE}
             # --no-translations
-            $<TARGET_FILE:${PROJECT_NAME}>
+            "$<TARGET_FILE:${PROJECT_NAME}>"
     )
 elseif (APPLE)
     # TODO:
