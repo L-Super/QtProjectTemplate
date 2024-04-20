@@ -13,7 +13,7 @@ This project template provides a Qt project setup with a CI/CD.
 
 ## TODO
 
-- [ ] adjust rc file location
+- [ ] adjust WIN32 flag
 
 - [ ] add translation function
 

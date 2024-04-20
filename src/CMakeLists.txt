@@ -32,7 +32,21 @@ if (WIN32)
         add_compile_options(/utf-8)
     endif ()
 
-    set(SRC_FILES ${SRC_FILES} resources/app.rc)
+    # set Windows rc info
+    set(PRODUCT_ICON "logo.ico")
+    set(FILE_VERSION ${VERSION_MAJOR},${VERSION_MINOR},${VERSION_PATCH}) # 文件版本
+    set(FILE_VERSION_STR "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+    set(PRODUCT_VERSION ${VERSION_MAJOR},${VERSION_MINOR},${VERSION_PATCH}) # 产品版本
+    set(PRODUCT_VERSION_STR "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+    set(COMPANY_NAME "Qt")
+    set(FILE_DESCRIPTION "Qt template application") # 文件说明
+    set(LEGAL_COPYRIGHT "Copyright 2024-2077 The L Company Ltd.")
+    set(PRODUCT_NAME "Qt template")
+
+    set(WIN_RES_PATH ${CMAKE_CURRENT_SOURCE_DIR}/resources/win)
+    configure_file(${WIN_RES_PATH}/app.rc.in ${WIN_RES_PATH}/app.rc @ONLY)
+
+    set(QRC_FILES ${QRC_FILES} ${WIN_RES_PATH}/app.rc)
 
     if (CMAKE_BUILD_TYPE STREQUAL "Debug")
         message(STATUS "Running ${CMAKE_BUILD_TYPE} mode")
@@ -45,7 +59,7 @@ if (WIN32)
 elseif (APPLE)
     set(MAC_RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources/mac")
     # It needs to be added to add_executable to display the bundle icon on macOS
-    set(SRC_FILES ${SRC_FILES} ${MAC_RES_PATH}/logo.icns)
+    set(QRC_FILES ${QRC_FILES} ${MAC_RES_PATH}/logo.icns)
 endif ()
 
 add_executable(${PROJECT_NAME}
