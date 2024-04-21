@@ -48,14 +48,6 @@ if (WIN32)
 
     set(QRC_FILES ${QRC_FILES} ${WIN_RES_PATH}/app.rc)
 
-    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-        message(STATUS "Running ${CMAKE_BUILD_TYPE} mode")
-        set(CONSOLE "")
-    else ()
-        message(STATUS "Running ${CMAKE_BUILD_TYPE} mode")
-        # Remove the terminal display
-        set(CONSOLE WIN32)
-    endif ()
 elseif (APPLE)
     set(MAC_RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources/mac")
     # It needs to be added to add_executable to display the bundle icon on macOS
@@ -63,13 +55,20 @@ elseif (APPLE)
 endif ()
 
 add_executable(${PROJECT_NAME}
-        ${CONSOLE}
         main.cpp
         ${QRC_FILES}
         ${SRC_FILES}
 )
 
-if (APPLE)
+if (WIN32)
+    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+        message(STATUS "Running ${CMAKE_BUILD_TYPE} mode")
+    else ()
+        message(STATUS "Running ${CMAKE_BUILD_TYPE} mode")
+        # Remove the terminal display
+        set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+    endif ()
+elseif (APPLE)
     # It needs after add_executable
     set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE TRUE)
 
