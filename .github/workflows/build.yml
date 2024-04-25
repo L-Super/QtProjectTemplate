@@ -28,7 +28,7 @@ jobs:
             #
             # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
             matrix:
-                os: [ubuntu-latest, ubuntu-20.04]
+                os: [ubuntu-latest]
                 build_type: [Release]
                 cpp_compiler: [g++, clang++]
                 include:
@@ -121,6 +121,11 @@ jobs:
                     qt_version: 6.7.0
                   - os: macos-13
                     qt_version: 5.15.2
+              exclude:
+                  - os: macos-latest
+                  - qt_version: 5.15.2
+                  - os: macos-13
+                  - qt_version: 6.7.0
 
       steps:
           - uses: actions/checkout@v4
