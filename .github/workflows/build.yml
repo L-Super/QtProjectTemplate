@@ -123,9 +123,9 @@ jobs:
                     qt_version: 5.15.2
               exclude:
                   - os: macos-latest
-                  - qt_version: 5.15.2
+                    qt_version: 5.15.2
                   - os: macos-13
-                  - qt_version: 6.7.0
+                    qt_version: 6.7.0
 
       steps:
           - uses: actions/checkout@v4
