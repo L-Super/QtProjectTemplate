@@ -38,12 +38,6 @@ jobs:
                     - os: ubuntu-latest
                       c_compiler: clang
                       cpp_compiler: clang++
-                    - os: ubuntu-20.04
-                      c_compiler: gcc
-                      cpp_compiler: g++
-                    - os: ubuntu-20.04
-                      c_compiler: clang
-                      cpp_compiler: clang++
                 # exclude:
                 #   - os: windows-latest
                 #     c_compiler: gcc
@@ -118,9 +112,15 @@ jobs:
       strategy:
           fail-fast: false
           matrix:
-              os: [macOS-latest]
-              qt_version: [5.15.2]
+              # macos-latest M1 arm architecture. macos-13 intel architecture
+              os: [macos-latest, macos-13]
+              qt_version: [5.15.2, 6.7.0]
               build_type: [Release]
+              include:
+                  - os: macos-latest
+                    qt_version: 6.7.0
+                  - os: macos-13
+                    qt_version: 5.15.2
 
       steps:
           - uses: actions/checkout@v4
