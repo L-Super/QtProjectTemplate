@@ -28,7 +28,7 @@ jobs:
             #
             # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
             matrix:
-                os: [ubuntu-latest, ubuntu-20.04]
+                os: [ubuntu-latest]
                 build_type: [Release]
                 cpp_compiler: [g++, clang++]
                 include:
@@ -36,12 +36,6 @@ jobs:
                       c_compiler: gcc
                       cpp_compiler: g++
                     - os: ubuntu-latest
-                      c_compiler: clang
-                      cpp_compiler: clang++
-                    - os: ubuntu-20.04
-                      c_compiler: gcc
-                      cpp_compiler: g++
-                    - os: ubuntu-20.04
                       c_compiler: clang
                       cpp_compiler: clang++
                 # exclude:
@@ -118,9 +112,20 @@ jobs:
       strategy:
           fail-fast: false
           matrix:
-              os: [macOS-latest]
-              qt_version: [5.15.2]
+              # macos-latest M1 arm architecture. macos-13 intel architecture
+              os: [macos-latest, macos-13]
+              qt_version: [5.15.2, 6.7.0]
               build_type: [Release]
+              include:
+                  - os: macos-latest
+                    qt_version: 6.7.0
+                  - os: macos-13
+                    qt_version: 5.15.2
+              exclude:
+                  - os: macos-latest
+                    qt_version: 5.15.2
+                  - os: macos-13
+                    qt_version: 6.7.0
 
       steps:
           - uses: actions/checkout@v4
@@ -142,4 +147,4 @@ jobs:
           - name: Build
             # Build your program with the given configuration.
             # Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-            run: cmake --build ${{github.workspace}}/build --config ${{ matrix.build_type }}          
+            run: cmake --build ${{github.workspace}}/build         
