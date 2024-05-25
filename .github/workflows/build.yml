@@ -94,7 +94,7 @@ jobs:
               uses: jurplel/install-qt-action@v4
               with:
                   version: ${{ matrix.qt_version }}
-                  dir: "${{ github.workspace }}/Qt"
+                  cache: true
 
             - name: Configure CMake
               # Configure CMake in a 'build' subdirectory.
@@ -136,7 +136,7 @@ jobs:
             uses: jurplel/install-qt-action@v4
             with:
                 version: ${{ matrix.qt_version }}
-                dir: "${{ github.workspace }}/Qt"
+                cache: true
 
           - name: Configure CMake
             # Configure CMake in a 'build' subdirectory.
