@@ -73,7 +73,7 @@ elseif (APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE TRUE)
 
     # Add icon to Mac bundle Resources dir
-    set_source_files_properties(${APP_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    set_source_files_properties(${MAC_RES_PATH}/logo.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
             MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
