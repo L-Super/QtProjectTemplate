@@ -74,7 +74,7 @@ jobs:
               # Execute tests defined by the CMake configuration.
               # Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
               # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-              run: ctest --build-config ${{ matrix.build_type }}
+              run: ctest
 
     windows-build:
         runs-on: ${{ matrix.os }}
@@ -106,6 +106,13 @@ jobs:
               # Build your program with the given configuration.
               # Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
               run: cmake --build ${{github.workspace}}/build --config ${{ matrix.build_type }}
+
+            - name: Test
+              working-directory: ${{github.workspace}}/build
+              # Execute tests defined by the CMake configuration.
+              # Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
+              # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+              run: ctest --build-config ${{ matrix.build_type }}
 
     macos-build:
       runs-on: ${{ matrix.os }}
@@ -148,3 +155,10 @@ jobs:
             # Build your program with the given configuration.
             # Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
             run: cmake --build ${{github.workspace}}/build         
+
+          - name: Test
+            working-directory: ${{github.workspace}}/build
+            # Execute tests defined by the CMake configuration.
+            # Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
+            # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+            run: ctest --build-config ${{ matrix.build_type }}
