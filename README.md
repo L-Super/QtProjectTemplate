@@ -3,13 +3,14 @@ This project template provides a Qt project setup with a CI/CD.
 
 ## Features
 - CMake-based project configuration
-- GitHub Actions for CI on Linux, Windows and MacOS
+- GitHub Actions for CI on Linux, Windows and macOS
+- Unit tests template
 
 ## Structure
-- .github/workflows: GitHub Actions configs
-- src: Project source code
-- tests(optional): Unit tests
-- scripts(optional): some tool scripts
+- `.github`: GitHub Actions configs
+- `src`: Project source code
+- `tests`(optional): Unit tests
+- `scripts`(optional): some tool scripts
 
 ## TODO
 

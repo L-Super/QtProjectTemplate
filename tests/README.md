@@ -1,2 +1,2 @@
-# tests
-Unit tests
+# Unit tests template
+This is a unit tests template
