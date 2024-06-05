@@ -1,4 +1,7 @@
 # Qt Project Template
+
+[![build](https://github.com/L-Super/QtProjectTemplate/actions/workflows/build.yml/badge.svg)](https://github.com/L-Super/QtProjectTemplate/actions/workflows/build.yml)
+
 This project template provides a Qt project setup with a CI/CD.
 
 ## Features
