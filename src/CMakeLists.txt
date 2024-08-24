@@ -26,6 +26,9 @@ qt_add_resources(QRC_FILES resources.qrc)
 
 set(SRC_FILES MainWindow.cpp MainWindow.h MainWindow.ui)
 
+set(APP_DESCRIPTION "Qt template application")
+set(APP_COPYRIGHT "Copyright 2024-2077 The L Company Ltd.")
+
 if (WIN32)
     if (MSVC)
         # Set MSVC to use utf-8 encode for building
@@ -39,8 +42,8 @@ if (WIN32)
     set(PRODUCT_VERSION ${PROJECT_VERSION_MAJOR},${PROJECT_VERSION_MINOR},${PROJECT_VERSION_PATCH},${PROJECT_VERSION_TWEAK}) # 产品版本
     set(PRODUCT_VERSION_STR "${PROJECT_VERSION}")
     set(COMPANY_NAME "Qt")
-    set(FILE_DESCRIPTION "Qt template application") # 文件说明
-    set(LEGAL_COPYRIGHT "Copyright 2024-2077 The L Company Ltd.")
+    set(FILE_DESCRIPTION ${APP_DESCRIPTION}) # 文件说明
+    set(LEGAL_COPYRIGHT ${APP_COPYRIGHT})
     set(PRODUCT_NAME "Qt template")
 
     set(WIN_RES_PATH ${CMAKE_CURRENT_SOURCE_DIR}/resources/win)
@@ -79,10 +82,10 @@ elseif (APPLE)
             MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
             MACOSX_BUNDLE_ICON_FILE "logo.icns"
             MACOSX_BUNDLE_GUI_IDENTIFIER "com.template.example"
-            MACOSX_BUNDLE_INFO_STRING "This is a qt application"
+            MACOSX_BUNDLE_INFO_STRING ${APP_DESCRIPTION}
             MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
             MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
-            MACOSX_BUNDLE_COPYRIGHT "Copyright 2024-2077 The L Company Ltd."
+            MACOSX_BUNDLE_COPYRIGHT ${APP_COPYRIGHT}
             MACOSX_BUNDLE_INFO_PLIST ${MAC_RES_PATH}/Info.plist.in)
 endif ()
 
