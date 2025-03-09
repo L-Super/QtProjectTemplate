@@ -83,7 +83,7 @@ jobs:
             fail-fast: false
             matrix:
                 os: [windows-latest]
-                qt_version: [5.15.2, 6.7.0]
+                qt_version: [5.15.2, 6.8.0]
                 build_type: [Release]
 
         steps:
@@ -123,17 +123,17 @@ jobs:
           matrix:
               # macos-latest M1 arm architecture. macos-13 intel architecture
               os: [macos-latest, macos-13]
-              qt_version: [5.15.2, 6.7.0]
+              qt_version: [5.15.2, 6.8.0]
               include:
                   - os: macos-latest
-                    qt_version: 6.7.0
+                    qt_version: 6.8.0
                   - os: macos-13
                     qt_version: 5.15.2
               exclude:
                   - os: macos-latest
                     qt_version: 5.15.2
                   - os: macos-13
-                    qt_version: 6.7.0
+                    qt_version: 6.8.0
 
       steps:
           - uses: actions/checkout@v4
