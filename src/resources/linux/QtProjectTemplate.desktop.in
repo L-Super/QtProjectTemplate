@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=System;
+Type=Application
+Keywords=cross-platform application;
+Name=QtProjectTemplate
+Exec=AppRun %F
+Icon=icon
+Comment=A cross-platform tool
+Terminal=true

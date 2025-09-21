@@ -1,0 +1,55 @@
+name: mac-package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  platform-build-package:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+    env:
+      QT_VERSION: 6.8.0
+      BUILD_TYPE: Release
+
+    steps:
+      - name: Checkout Source code
+        uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ env.QT_VERSION }}
+          cache: true
+          cache-key-prefix: 'Qt'
+
+      - name: Configure CMake
+        run: cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+
+      - name: Build
+        run: cmake --build ${{ github.workspace }}/build
+          
+      - name: Create dmg
+        uses: L-Super/create-dmg-actions@v1
+        with:
+          dmg_name: 'QtProjectTemplate'
+          src_dir: '${{ github.workspace }}/build/src/QtProjectTemplate.app'
+          
+      # - name: Upload macOS DMG as Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: macOS-DMG
+      #     path: ${{ github.workspace }}/QtProjectTemplate*.dmg
+      #     retention-days: 7
+          
+      - name: Create Release and Upload Artifacts
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ github.workspace }}/QtProjectTemplate*.dmg
+          draft: false
+          prerelease: false
+          generate_release_notes: true

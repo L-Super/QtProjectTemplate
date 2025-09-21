@@ -10,11 +10,11 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS
         Gui
         Widgets
 )
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
         Core
         Gui
         Widgets
-        REQUIRED)
+)
 
 get_target_property(QMakeExecutable Qt${QT_VERSION_MAJOR}::qmake IMPORTED_LOCATION)
 get_filename_component(QtBinDir "${QMakeExecutable}" DIRECTORY)
@@ -55,6 +55,9 @@ elseif (APPLE)
     set(MAC_RES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources/mac")
     # It needs to be added to add_executable to display the bundle icon on macOS
     set(QRC_FILES ${QRC_FILES} ${MAC_RES_PATH}/logo.icns)
+elseif (UNIX AND NOT APPLE)
+    set(LINUX_RES_PATH ${CMAKE_CURRENT_SOURCE_DIR}/resources/linux)
+    configure_file(${LINUX_RES_PATH}/QtProjectTemplate.desktop.in ${LINUX_RES_PATH}/QtProjectTemplate.desktop @ONLY)
 endif ()
 
 add_executable(${PROJECT_NAME}
